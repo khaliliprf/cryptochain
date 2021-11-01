@@ -19,7 +19,7 @@ export default class Blockchain {
     const genesis = Block.genesis();
 
     // javascript object is a reference type that's means in variable is a reference to the actual data store on the heap
-    const isGen = Objecta.keys(genesis).every(
+    const isGen = Object.keys(genesis).every(
       field => genesis[field] === chain[0][field]
     );
     if (!isGen) return false;
