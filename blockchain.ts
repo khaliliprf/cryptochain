@@ -1,3 +1,5 @@
+import chalk from "chalk";
+
 import Block from "./block";
 import cryptoHash from "./cryptoHash";
 
@@ -38,5 +40,20 @@ export default class Blockchain {
     }
     // if every thing is all right chain is valid
     return true;
+  }
+
+  // it's not an static method because we do replace for each individual instances of Blockchain class - because each blockchain has it's own chain
+  // replacing a chain is base on an individual instance of the blockchain
+  replaceChain(newChain: Array<Block>): void {
+    if (newChain.length <= this.chain.length) {
+      console.log(chalk.red("the incoming chain must be longer."));
+      return;
+    }
+    if (!Blockchain.isValidChain(newChain)) {
+      console.log(chalk.red("the incoming chain is invalid."));
+      return;
+    }
+    console.log(chalk.green("replacing chain done"));
+    this.chain = newChain;
   }
 }
